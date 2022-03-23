@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Donnez votre maison Un Lumière brillante
+{% endblock title %}
+
+{% block content %}
+
+<!-- start header -->
+<section class="container-fluid my-5">
+    <div class="header">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12 my-auto">
+                <h3 class="font-weight-bold ml-5 my-2">
+                    Donnez votre maison<br>Un Lumière brillante
+                </h3>
+                <p class="lead ml-5 mt-3">si vous recherchez des produits électriques de qualité, bienvenue sur PowerMed
+                </p>
+                <a href="{% url 'products' %}" class="btn btn-lg ml-5">parcourir les produits</a>
+            </div>
+            <div class="col-lg-2"></div>
+            <div class="col-lg-4 col-md-12 col-sm-12 d-flex">
+                <div class="my-3 welcome justify-content-center">
+                    <img src="{% static 'images/standout.svg' %}" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end header -->
+
+<!-- start categories -->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <h1 class="text-center font-weight-bold">Catégories Vedettes</h1>
+        <hr class="mx-auto mt-2 mb-5" style="width: 30%">
+        <div class="row justify-content-center text-center my-5">
+            {% for category in categories|slice:3 %}
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-5">
+                <a href="{% url 'category' cat_id=category.id %}" class="card mx-2 shadow" style="width: 18rem;">
+                    <img src="{{category.image.url}}" height="250px" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title font-weight-bold text-center">{{category.category_name}}</h5>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- end categories -->
+
+<!-- start latest products -->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <h1 class="text-center font-weight-bold">Derniers Produits</h1>
+        <hr class="mx-auto mt-2 mb-5" style="width: 30%">
+        <div class="owl-carousel owl-theme">
+            {% for product in products %}
+            <div class="item">
+                <div class="mb-5">
+                    <div class="card">
+                        {% if product.is_active == False %}
+                        <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Vendu</div>
+                        {% endif %}
+                        <img class="card-img-top" height="250px" src="{{product.photo.url}}" alt="..." />
+                        <div class="card-body p-4 pb-0">
+                            <div class="text-center">
+                                <h6 class="font-weight-bold text-truncate">{{product.name}}</h6>
+                                {% if product.old_price %}
+                                <small class="text-muted text-decoration-line-through"><s>{{product.old_price}}</s></small>
+                                {% endif %}
+                                {{product.price}}DH
+                            </div>
+                        </div>
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn mt-auto" href="{% url 'product' pro_id=product.id %}">Détails du Produit</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- start latest products -->
+
+<!-- start features -->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <h1 class="text-center font-weight-bold">Porquoi Nous?</h1>
+        <hr class="mx-auto mt-2 mb-5" style="width: 30%">
+        <div class="row justify-content-center text-center my-5">
+            <div class="col-lg-4 col-md-6 col-sm-12 my-2">
+                <h1 class="font-weight-bold">
+                    <i class="bi bi-truck text-warning"></i>
+                </h1>
+                <h4 class="font-weight-bold">livraison express</h4>
+                <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere iusto repudiandae saepe ipsam voluptatem fuga?</p>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 my-2">
+                <h1 class="font-weight-bold">
+                    <i class="bi bi-award text-warning"></i>
+                </h1>
+                <h4 class="font-weight-bold">Haute qualité</h4>
+                <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere iusto repudiandae saepe ipsam voluptatem fuga?</p>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 my-2">
+                <h1 class="font-weight-bold">
+                    <i class="bi bi-cash text-warning"></i>
+                </h1>
+                <h4 class="font-weight-bold">prix convenable</h4>
+                <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere iusto repudiandae saepe ipsam voluptatem fuga?</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end features -->
+
+{% endblock content %}

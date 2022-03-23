@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,700;1,700&display=swap');
+
+:root {
+	--main-color: #fff;
+	--other-color: #000;
+	--first-color: #ffa500;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Poppins', sans-serif;
+	box-sizing: border-box;
+	color: var(--other-color) !important;
+}
+
+.main-bg {
+	background-color: var(--main-color) !important;
+}
+
+.navbar-brand {
+	font-size: 23px;
+	margin-left: 30px;
+	font-family: 'Ubuntu', sans-serif !important;
+}
+
+.navbar-brand span {
+	font-size: 23px;
+	font-family: 'Ubuntu', sans-serif !important;
+}
+
+.nav-item .nav-link:hover,
+.nav-item .nav-link i:hover,
+.nav-link .bi:hover {
+	color: var(--first-color) !important;
+}
+.dropdown-item:hover {
+	color: var(--first-color) !important;
+	background-color: var(--main-color);
+}
+
+.navbar-toggler-icon {
+	color: var(--other-color) !important;
+}
+
+.header .welcom img {
+	width: 300px !important;
+}
+
+a {
+	text-decoration: none !important;
+}
+
+.btn {
+	padding: 5px 15px;
+	color: var(--other-color);
+	border: 1px solid var(--first-color);
+	border-radius: 30px;
+}
+
+.btn-back {
+	padding: 5px 15px;
+	color: var(--other-color);
+	border: 1px solid var(--other-color);
+	border-radius: 30px;
+}
+
+.btn-back:hover {
+	color: var(--main-color) !important;
+	background-color: var(--other-color) !important;
+}
+
+.btn-prev {
+	padding: 7px 15px;
+	background-color: var(--main-color);
+	color: var(--other-color);
+	border: 1px solid var(--first-color);
+	border-radius: .25rem 0 0 .25rem !important;
+}
+.btn-next {
+	padding: 7px 15px;
+	background-color: var(--main-color);
+	color: var(--other-color);
+	border: 1px solid var(--first-color);
+	border-radius: 0 .25rem .25rem 0 !important;
+}
+
+.btn-center {
+	padding: 7px 15px;
+	background-color: var(--main-color);
+	color: var(--other-color);
+	border: 1px solid var(--first-color);
+}
+
+.btn:hover,
+.btn-prev:hover,
+.btn-next:hover,
+.btn-center:hover {
+	background-color: var(--first-color);
+	color: var(--other-color);
+}
+
+.btnedit {
+	background-color: transparent;
+	border: none;
+}
+
+.header img {
+	height: 500px;
+}
+
+.exclusive {
+	background-image: radial-gradient(var(--main-color), rgb(252, 218, 157));
+}
+
+.exclusive img {
+	height: 350px;
+}
+
+#creator {
+	text-decoration: none;
+	font-family: 'Merienda', cursive;
+}
+
+/* ======== Products ============ */
+
+.navigation .pagination .page-item a:hover {
+	color: var(--other-color);
+	background-color: var(--other-color) !important;
+}
+
+/* ======== Product ============ */
+
+.owl-nav .owl-prev {
+	background-color: white !important;
+	width: 50px;
+	height: 50px;
+	border: 1px solid #dee2e6 !important;
+	border-radius: 100% !important;
+	position: absolute;
+	right: 97%;
+	top: 50%;
+	transform: translateY(-50%);
+	color: #dee2e6 !important;
+	outline: none;
+}
+
+.owl-nav .owl-next {
+	background-color: white !important;
+	width: 50px;
+	height: 50px;
+	border: 1px solid #dee2e6 !important;
+	border-radius: 100% !important;
+	position: absolute;
+	left: 97%;
+	top: 50%;
+	transform: translateY(-50%);
+	color: #dee2e6 !important;
+	outline: none;
+}
+
+.owl-nav .owl-prev span,
+.owl-nav .owl-next span {
+	font-size: 24px !important;
+	font-weight: bold !important;
+}
+
+.owl-nav .owl-prev:hover,
+.owl-nav .owl-next:hover {
+	background-color: #dee2e6 !important;
+	color: white !important;
+}
+
+/* ======== About ============ */
+.hero {
+	background-image: radial-gradient(var(--main-color), var(--first-color));
+	/* height: 500px; */
+}
+
+@media (max-width: 767px) {
+	.my-form {
+		width: 100% !important;
+	}
+	.owl-nav .owl-prev {
+		right: 86%;
+	}
+	.owl-nav .owl-next {
+		left: 86%;
+	}
+	.header .welcom img {
+		max-width: 650px;
+	}
+	/* .book {
+		width: 200px !important;
+		height: 230px !important;
+	} */
+}

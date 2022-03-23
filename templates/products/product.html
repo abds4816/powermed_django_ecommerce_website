@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{pro.name}}
+{% endblock title %}
+
+{% block content %}
+
+<!-- start product section -->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+
+        {% include 'parts/messages.html' %}
+
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" width="600px" src="{{pro.photo.url}}" alt="..." /></div>
+            <div class="col-md-6">
+                <h2 class="display-5 font-weight-bold text-uppercase">{{pro.name}}</h2>
+                <div class="fs-5 mb-3">
+                    {% if pro.old_price %}
+                    <small class="text-decoration-line-through"><s>{{pro.old_price}}</s></small>
+                    {% endif %}
+                    <span>{{pro.price}}DH</span>
+                </div>
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <td>Categorie : </td>
+                            <td><a href="{% url 'category' cat_id=pro.category.id %}" class="font-weight-bold">{{pro.category}}</a></td>
+                        </tr>
+                        <tr>
+                            <td>Mark : </td>
+                            <td>{{pro.brand}}</td>
+                        </tr>
+                        <tr>
+                            <td>Puissance : </td>
+                            <td>{{pro.ability}}W</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr style="width: 60%;">
+                <h5 class="font-weight-bold my-3">à propos de ce produit</h5>
+                <p class="lead">{{pro.description}}</p>
+                <form action="{% url 'add_to_cart' %}" class="d-flex">
+                    {% if pro.is_active == True %}
+                    <input class="form-control text-center mr-3" id="inputQuantity" name="qty" type="num" value="1" style="max-width: 3rem" />
+                    <input type="hidden" name="pro_id" value="{{pro.id}}">
+                    <button id="{{pro.id}}" type="submit" class="btn flex-shrink-0">
+                        <i class="bi bi-cart-fill mr-1"></i>
+                        Ajouter au panier
+                    </button>
+                    {% else %}
+                    <input class="form-control text-center mr-3" readonly id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
+                    <button class="btn flex-shrink-0 disabled">
+                        <i class="bi bi-cart-fill mr-1"></i>
+                        Ajouter au panier
+                    </button>
+                </form>
+                <p class="text-danger mt-3">* Ce produit est épuisé et d'autres seront bientôt ajoutés.</p>
+                    {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end product section -->
+
+<!-- start related products section -->
+{% if related_products %}
+<section class="py-5">
+    <div class="container mt-5">
+            <h1 class="mb-5 text-left font-weight-bold">Produits liés</h1>
+            <div class="owl-carousel owl-theme">
+                {% for product in related_products|slice:8 %}
+                <div class="item">
+                    <div class="mb-5">
+                        <div class="card">
+                            {% if product.is_active == False %}
+                            <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Vendu</div>
+                            {% endif %}
+                            <img class="card-img-top" height="250px" src="{{product.photo.url}}" alt="..." />
+                            <div class="card-body p-4 pb-0">
+                                <div class="text-center">
+                                    <h6 class="font-weight-bold text-truncate">{{product.name}}</h6>
+                                    {% if product.old_price %}
+                                    <small class="text-muted text-decoration-line-through"><s>{{product.old_price}}</s></small>
+                                    {% endif %}
+                                    {{product.price}}DH
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn mt-auto" href="{% url 'product' pro_id=product.id %}">Détails du Produit</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+<!-- end related products section -->
+
+{% endblock %}

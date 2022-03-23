@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+Vérifier Votre Demmande
+{% endblock title %}
+
+{% block content %}
+
+<!-- start checkout -->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <h1 class="text-center font-weight-bold">Vérifier</h1>
+        <hr class="mx-auto mb-5" style="width: 30%">
+        {% if cart %}
+
+        {% include 'parts/messages.html' %}
+
+        <div class="row my-5">
+            <div class="col-lg-7 col-md-6 col-sm-12">
+                <form method="POST" class="w-75 mx-auto my-form mb-5">
+                  {% csrf_token %}
+                    <div class="form-row">
+                      <div class="col-md-6 mb-3">
+                        <label for="validationDefault01">Prénom</label>
+                        <input type="text" class="form-control" id="validationDefault01" name="fname" required>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label for="validationDefault02">Nom</label>
+                        <input type="text" class="form-control" id="validationDefault02" name="lname" required>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPhone">Téléphone</label>
+                        <input type="text" class="form-control" id="exampleInputPhone" name="phone" required>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label for="exampleInputCity">Ville</label>
+                        <input type="text" class="form-control" id="exampleInputCity" name="city" required>
+                    </div>
+                    <button class="btn btn-block btn-lg" type="submit" name="btncheckout">Vérifier</button>
+                </form>
+            </div>
+            <div class="col-lg-5 col-md-6 col-sm-12">
+                <table class="table text-center mt-5">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="bg-light" colspan="4">Récapitulatif de la commande</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for item in cart %}
+                      {% with product=item.product %}
+                      <tr>
+                        <td>
+                            <img src="{{product.photo.url}}" style="height:30px;">
+                        </td>
+                        <td>{{item.quantity}}</td>
+                        <td>{{item.total_price}}</td>
+                      </tr>
+                      {% endwith %}
+                      {% endfor %}
+                      <tr>
+                        <td>
+                            <div class="font-weight-bold">Total: </div>
+                        </td>
+                        <td colspan="2" class="font-weight-bold bg-light">{{cart.get_total_price}}DH</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="d-flex justify-content-center">
+                      <a href="{% url 'cart' %}" class="btn btn-back">&#8592; modifier le panier</a>
+                    </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="alert alert-warning text-center my-5" role="alert">
+          Aucun détail n'a été trouvé ici. Vous pouvez revenir à la liste des produits 
+          <a href="{% url 'products' %}" class="font-weight-bold">ici</a>.
+        </div>
+        {% endif %}
+    </div>
+</section>
+<!-- end checkout -->
+
+{% endblock content %}

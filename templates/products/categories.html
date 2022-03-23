@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Tous Les Catégories
+{% endblock title %}
+
+{% block content %}
+
+<!-- start products -->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <h1 class="text-center font-weight-bold">Tous Les Catégories</h1>
+        <hr class="mx-auto" style="width: 30%">
+        <div class="row justify-content-center mt-5">
+            {% for category in categories %}
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-5">
+                    <a href="{% url 'category' cat_id=category.id %}" class="card mx-2" style="width: 18rem;">
+                        <img src="{{category.image.url}}" height="250px" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title font-weight-bold text-center">{{category.category_name}}</h5>
+                        </div>
+                    </a>
+            </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end products -->
+
+<!-- start pagination -->
+{% if categories.has_other_pages %}
+<div aria-label="Page navigation example mt-5">
+    <ul class="pagination justify-content-center">
+        {% if categories.has_previous %}
+      <li class="page-item">
+        <a class="page-link btn-prev" href="?page={{ categories.previous_page_number }}" tabindex="-1" aria-disabled="true">Previous</a>
+      </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link btn-prev" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+        </li>
+        {% endif %}
+
+        {% for i in categories.paginator.page_range %}
+            <li class="page-item"><a class="page-link btn-center" href="?page={{i}}">{{i}}</a></li>
+        {% endfor %}
+
+      {% if categories.has_next %}
+      <li class="page-item">
+        <a class="page-link btn-next" href="?page={{ categories.next_page_number }}">Next</a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <a class="page-link btn-next" href="#">Next</a>
+      </li>
+      {% endif %}
+
+    </ul>
+</div>
+{% endif %}
+<!-- end pagination -->
+
+{% endblock content %}

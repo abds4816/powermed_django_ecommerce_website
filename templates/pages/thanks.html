@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Merci de votre Confiance
+{% endblock title %}
+
+{% block content %}
+
+<!-- start header -->
+<section class="container-fluid my-5">
+    <div class="header">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12 my-auto">
+                <h3 class="font-weight-bold ml-5 my-2">
+                    Merci de votre<br><span class="display-4 text-success">Confiance</span>
+                </h3>
+                <p class="lead ml-5 mt-3">Votre demande a été reçue et nous vous contacterons sous peu.
+                </p>
+                <p class="lead ml-5 mt-3">Vous pouvez revenir à la page d'accueil ici.
+                </p>
+                <a href="{% url 'index' %}" class="btn btn-back ml-5">&#8592; Accueil</a>
+            </div>
+            <div class="col-lg-2"></div>
+            <div class="col-lg-4 col-md-12 col-sm-12 d-flex justify-content-end">
+                <div class="my-3 welcome">
+                    <img src="{% static 'images/contact.jpg' %}">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end header -->
+
+{% endblock content %}

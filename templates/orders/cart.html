@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Mon Paniér
+{% endblock title %}
+
+{% block content %}
+
+<!-- start cart -->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <h1 class="text-center font-weight-bold">Mon panier</h1>
+        <hr class="mx-auto mb-2" style="width: 30%">
+
+        {% include 'parts/messages.html' %}
+
+        {% if cart %}
+        <table class="table text-left mt-5 mb-2 w-75 mx-auto">
+            <thead>
+              <tr>
+                <th scope="col" class="pl-3">Produit</th>
+                <th scope="col" class="pl-3">Quantité</th>
+                <th scope="col" class="pl-3">Prix Unique</th>
+                <th scope="col" class="pl-3">Effacer</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in cart %}
+              {% with product=item.product %}
+              <tr>
+                <td class="text-left">
+                    <img src="{{product.photo.url}}" class="px-3" style="height:50px;">
+                    {{product.name}}
+                </td>
+                <td>
+                  <form action="{% url 'update_cart' pro_id=product.id %}" class="d-flex">
+                    <input class="form-control text-center mr-3" name="new_qty" type="num" value="{{item.quantity}}" style="max-width: 3rem" />
+                    <button type="submit" name="{{pro.id}}" class="pt-2 btnedit">
+                      <i class="bi bi-pen-fill mr-1"></i>
+                  </button>
+                  </form>
+                </td>
+                <td>
+                  <div class="pt-2">
+                    {{item.price}}DH
+                  </div>
+                </td>
+                <td>
+                  <div class="pt-2">
+                    <a href="{% url 'remove_from_cart' pro_id=product.id %}"><i class="bi bi-trash-fill text-danger"></i></a>
+                  </div>
+                </td>
+              </tr>
+              {% endwith %}
+              {% endfor %}
+            </tbody>
+        </table>
+        <div class="row my-3">
+            <div class="col-md-3 col-sm-12"></div>
+            <div class="col-md-3 col-sm-12 text-center">
+                <h6 class="font-weight-bold">Total: </h6>
+            </div>
+            <div class="col-md-3 col-sm-12 text-center bg-light">
+                <h6 class="font-weight-bold">{{cart.get_total_price}}DH</h6>
+            </div>
+            <div class="col-md-3 col-sm-12"></div>
+        </div>
+        <div class="row my-5">
+            <div class="col-md-6 col-sm-12 text-center">
+                <a href="{% url 'products' %}" class="btn btn-back mb-3">&#8592; retour aux produits</a>
+            </div>
+            <div class="col-md-6 col-sm-12 text-center">
+                <a href="{% url 'checkout' %}" class="btn mb-3">aller à la caisse &#8594;</a>
+            </div>
+        </div>
+        {% else %}
+        <div class="alert alert-warning text-center my-5" role="alert">
+          Aucun détail n'a été trouvé ici. Vous pouvez revenir à la liste des produits 
+          <a href="{% url 'products' %}" class="font-weight-bold">ici</a>.
+        </div>
+        {% endif %}
+    </div>
+</section>
+<!-- start cart -->
+
+{% endblock content %}

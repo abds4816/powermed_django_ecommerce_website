@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,700;1,700&display=swap');
+
+* {
+	font-family: 'Poppins', sans-serif !important;
+}
+
+h1 {
+	font-weight: bold !important;
+}
+
+#header {
+	background-color: rgb(255, 255, 255);
+	box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #074f96 !important;
+	position: sticky;
+}
+
+#head {
+	font-size: 23px !important;
+	margin-left: 30px !important;
+	font-weight: bold !important;
+	font-family: 'Ubuntu', sans-serif !important;
+	color: black !important;
+	font-family: 'Ubuntu', sans-serif !important;
+}
+
+a {
+	color: rgb(0, 0, 0) !important;
+	text-decoration: none !important;
+}
+
+.module h2,
+.module caption,
+.inline-group h2 {
+	background-color: rgb(247, 197, 105);
+}
+
+div .breadcrumbs {
+	background-color: rgb(252, 181, 50);
+	color: #000 !important;
+}
+
+.button.default,
+input[type=submit].default,
+.submit-row input.default {
+	background-color: orange;
+}
+.button.default:hover,
+input[type=submit].default:hover,
+.submit-row input.default:hover {
+	background-color: rgb(145, 96, 7);
+}
+
+.button,
+input[type=submit],
+input[type=button],
+.submit-row input,
+a.button {
+	background-color: rgb(247, 181, 60);
+}
+
+.button:hover,
+input[type=submit]:hover,
+input[type=button]:hover,
+.submit-row input:hover,
+a.button:hover {
+	background-color: rgb(197, 137, 25);
+}
+
+.object-tools a:link,
+.object-tools a:visited {
+	background: orange;
+	color: #000;
+}
